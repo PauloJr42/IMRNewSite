@@ -1,9 +1,9 @@
 <?php
 
-$host = 'postgres/postgres@PostgreSQL 15';
+$host = 'localhost';
 $user = 'postgres';
-$pass = 'Nuttere@2021';
-$dbname = 'email';
+$pass = 'postgres';
+$dbname = 'Email';
 
 $conn = new PDO("pgsql:host=$host;dbname=$dbname", $user, $pass);
 
