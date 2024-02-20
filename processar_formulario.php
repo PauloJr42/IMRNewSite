@@ -6,12 +6,28 @@ $dbname = 'Email';
 $user = 'postgres';
 $password = 'postgres';
 
-// Conexão com o PostgreSQL
+// DSN (Data Source Name) para a conexão PDO com PostgreSQL
+$dsn = "pgsql:host=$host;dbname=$dbname;user=$usuario;password=$senha";
+
+// Configurações adicionais para o PDO
+$options = [
+  PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+  PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+  PDO::ATTR_EMULATE_PREPARES   => false,
+];
+
 try {
-  $pdo = new PDO("pgsql:host=$host;port=$port;dbname=$dbname;user=$user;password=$password");
+  $conexao = new PDO($dsn, $usuario, $senha, $options);
+  echo "Conexão com o banco de dados PostgreSQL estabelecida com sucesso!";
 } catch (PDOException $e) {
-  die("Erro na conexão com o banco de dados: " . $e->getMessage());
+  die("Erro na conexão com o banco de dados PostgreSQL: " . $e->getMessage());
 }
+// Conexão com o PostgreSQL
+//try {
+ // $pdo = new PDO("pgsql:host=$host;port=$port;dbname=$dbname;user=$user;password=$password");
+//} catch (PDOException $e) {
+ // die("Erro na conexão com o banco de dados: " . $e->getMessage());
+//}
 
 // Processar formulário e salvar e-mail no banco de dados
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -38,4 +54,6 @@ if ($errorInfo[0] != '00000') {
     die("Erro no banco de dados: " . $errorInfo[2]);
 }
 
-?>
+// Matando conexão
+$conexao = null;
+
