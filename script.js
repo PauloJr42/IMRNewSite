@@ -1,4 +1,4 @@
-document.getElementById('myForm').addEventListener('submit', function(event) {
+document.getElementById('form').addEventListener('submit', function(event) {
     event.preventDefault(); // Impede o envio do formulário padrão
   
     var email = document.getElementById('email').value;
