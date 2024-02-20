@@ -1,13 +1,13 @@
 <?php
 // Configurações do banco de dados
-$host = 'localhost';
+$host = '';
 $port = '5432';
 $dbname = 'Email';
 $user = 'postgres';
 $password = 'postgres';
 
 // DSN (Data Source Name) para a conexão PDO com PostgreSQL
-$dsn = "pgsql:host=$host;dbname=$dbname;user=$user;password=$password";
+$dsn = "postgres://postgres:postgres@psedge.global:5432/Email?application_name=d3952972-c0d7-47d5-9a02-e296121fdeae";
 
 // Configurações adicionais para o PDO
 $options = [
