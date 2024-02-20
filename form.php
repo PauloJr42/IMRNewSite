@@ -14,9 +14,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
 }
 
-$stmt = $conn->prepare('INSERT INTO dados (email) VALUES (? )');
+$stmt = $conn->prepare('INSERT INTO emails (email) VALUES (? )');
 
-$stmt->bindParam(':email', $email);
+$stmt->bindParam("s", $email);
 
 $stmt->execute();
 
