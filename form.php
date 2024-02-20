@@ -4,8 +4,9 @@ $host = 'localhost';
 $user = 'postgres';
 $pass = 'postgres';
 $dbname = 'Email';
+$port = '5432';
 
-$conn = new PDO("pgsql:host=$host;dbname=$dbname", $user, $pass);
+$conn = new PDO("pgsql:host=$host;port=$port;dbname=$dbname;user=$user;password=$password");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
@@ -13,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
 }
 
-$stmt = $conn->prepare('INSERT INTO dados (email) VALUES ( :email )');
+$stmt = $conn->prepare('INSERT INTO dados (email) VALUES (? )');
 
 $stmt->bindParam(':email', $email);
 
