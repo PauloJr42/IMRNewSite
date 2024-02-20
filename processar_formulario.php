@@ -57,3 +57,4 @@ if ($errorInfo[0] != '00000') {
 // Matando conexão
 $conexao = null;
 
+?>
