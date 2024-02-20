@@ -7,7 +7,7 @@ $user = 'postgres';
 $password = 'postgres';
 
 // DSN (Data Source Name) para a conexão PDO com PostgreSQL
-$dsn = "pgsql:host=$host;dbname=$dbname;user=$usuario;password=$senha";
+$dsn = "pgsql:host=$host;dbname=$dbname;user=$user;password=$password";
 
 // Configurações adicionais para o PDO
 $options = [
@@ -17,7 +17,7 @@ $options = [
 ];
 
 try {
-  $conexao = new PDO($dsn, $usuario, $senha, $options);
+  $conexao = new PDO($dsn, $user, $password, $options);
   echo "Conexão com o banco de dados PostgreSQL estabelecida com sucesso!";
 } catch (PDOException $e) {
   die("Erro na conexão com o banco de dados PostgreSQL: " . $e->getMessage());
