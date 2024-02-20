@@ -30,4 +30,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo "Este e-mail já está cadastrado!";
   }
 }
+$stmt->execute([$email]);
+
+// Verificar se houve algum erro
+$errorInfo = $stmt->errorInfo();
+if ($errorInfo[0] != '00000') {
+    die("Erro no banco de dados: " . $errorInfo[2]);
+}
+
 ?>
