@@ -7,8 +7,8 @@ $dbname = 'Email';
 $port = '5432';
 $email = $_POST['email'];
 
-$conn = new PDO("pgsql:host=$host;port=$port;dbname=$dbname;user=$user;password=$password");
-$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$conn = new PDO("pg_connect:host=$host;port=$port;dbname=$dbname;user=$user;password=$password");
+
 $stmt = $conn->prepare('INSERT INTO emails (email) VALUES (? )');
 
 $stmt->bindParam("s", $email);
