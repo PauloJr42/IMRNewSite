@@ -1,3 +1,5 @@
+// app.js
+
 document.getElementById("capture-form").addEventListener("submit", async function (event) {
     event.preventDefault();
 
@@ -5,7 +7,7 @@ document.getElementById("capture-form").addEventListener("submit", async functio
     const phone = document.getElementById("phone").value;
 
     try {
-        const response = await fetch("/api/server", {
+        const response = await fetch("http://localhost:3000/api/capture", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -16,8 +18,7 @@ document.getElementById("capture-form").addEventListener("submit", async functio
         if (response.ok) {
             alert("Dados enviados com sucesso!");
         } else {
-            const errorData = await response.json();
-            alert(`Erro: ${errorData.error || "Não foi possível enviar os dados."}`);
+            alert("Erro ao enviar os dados.");
         }
     } catch (error) {
         console.error("Erro:", error);
