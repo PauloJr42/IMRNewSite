@@ -1,8 +1,8 @@
-[build]
-  functions = "netlify/functions" # Diretório onde estão as funções serverless
-  publish = "IMRNEWSITE"      # Diretório onde estão os arquivos estáticos (frontend)
+toml
+   [build]
+     publish = "public"  # Your build output directory
 
-[[redirects]]
-  from = "/api/capture"
-  to = "/.netlify/functions/capture"
-  status = 200
+   [[redirects]]
+     from = "/api/*"
+     to = "/.netlify/functions/:splat" # This is often correct.  The most reliable way is to use the function's name in the file path.
+     status = 200
