@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const { Pool } = require("pg");
+const cors = require("cors");
 
 const app = express();
 const port = 3000;
@@ -15,6 +16,9 @@ const pool = new Pool({
 });
 
 // Middleware
+app.use(cors({
+    origin: 'http://127.0.0.1:5500' // Allow requests from your frontend's origin
+}));
 app.use(bodyParser.json());
 
 // Rota de captura de dados
