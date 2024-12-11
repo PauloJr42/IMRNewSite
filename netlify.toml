@@ -1,5 +1,6 @@
-toml
+
    [build]
+   functions = "netlify/functions"
      publish = "public"  # Your build output directory
 
    [[redirects]]
