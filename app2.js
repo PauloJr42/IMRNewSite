@@ -1,3 +1,5 @@
+// app.js
+
 document.getElementById("capture-form").addEventListener("submit", async function (event) {
     event.preventDefault();
 
@@ -5,7 +7,7 @@ document.getElementById("capture-form").addEventListener("submit", async functio
     const phone = document.getElementById("phone").value;
 
     try {
-        const response = await fetch("/.netlify/functions/capture", { // Endpoint correto para Netlify Functions
+        const response = await fetch("https://imrservicos.netlify.app/.netlify/functions/server/server.mjs", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -14,14 +16,12 @@ document.getElementById("capture-form").addEventListener("submit", async functio
         });
 
         if (response.ok) {
-            const result = await response.json();
-            alert(result.message || "Dados enviados com sucesso!");
+            alert("Dados enviados com sucesso!");
         } else {
-            const errorData = await response.json();
-            alert(errorData.error || "Erro ao enviar os dados.");
+            alert("Erro ao enviar os dados.");
         }
     } catch (error) {
-        console.error("Erro na comunicação com o servidor:", error);
+        console.error("Erro:", error);
         alert("Erro ao conectar ao servidor.");
     }
 });
