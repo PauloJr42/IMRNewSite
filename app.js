@@ -7,7 +7,7 @@ document.getElementById("capture-form").addEventListener("submit", async functio
     const phone = document.getElementById("phone").value;
 
     try {
-        const response = await fetch("https://imrservicos.netlify.app", {
+        const response = await fetch("http://localhost:3000/api/capture", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
