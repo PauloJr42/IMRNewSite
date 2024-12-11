@@ -1,8 +1,8 @@
 [build]
-  functions = "netlify/functions"
-  publish = "public"
+  functions = "functions" # Diretório onde estão as funções serverless
+  publish = "public"      # Diretório onde estão os arquivos estáticos (frontend)
 
 [[redirects]]
-  from = "https://imrservicos.netlify.app"
-  to = "https://imrservicos.netlify.app/.netlify/functions/server/server.mjs"
+  from = "/api/capture"
+  to = "/.netlify/functions/capture"
   status = 200

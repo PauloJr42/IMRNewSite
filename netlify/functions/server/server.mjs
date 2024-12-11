@@ -1,6 +1,6 @@
-import { Pool } from "pg";
+const { Pool } = require("pg");
 
-// Configurações do banco de dados
+// Configuração da conexão com o banco PostgreSQL
 const pool = new Pool({
     user: "postgres",
     host: "localhost", // Altere para o IP/host do banco de dados em produção, se necessário
@@ -9,11 +9,11 @@ const pool = new Pool({
     port: 5432,
 });
 
-export async function handler(event, context) {
+exports.handler = async function (event) {
     if (event.httpMethod !== "POST") {
         return {
             statusCode: 405,
-            body: JSON.stringify({ error: "Método não permitido" }),
+            body: JSON.stringify({ error: "Método não permitido." }),
         };
     }
 
@@ -27,10 +27,7 @@ export async function handler(event, context) {
             };
         }
 
-        await pool.query("INSERT INTO users (email, phone) VALUES ($1, $2)", [
-            email,
-            phone,
-        ]);
+        await pool.query("INSERT INTO users (email, phone) VALUES ($1, $2)", [email, phone]);
 
         return {
             statusCode: 200,
@@ -40,7 +37,7 @@ export async function handler(event, context) {
         console.error("Erro ao salvar os dados:", error);
         return {
             statusCode: 500,
-            body: JSON.stringify({ error: "Erro interno no servidor." }),
+            body: JSON.stringify({ error: "Erro interno do servidor." }),
         };
     }
-}
+};
