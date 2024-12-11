@@ -17,7 +17,7 @@ const pool = new Pool({
 
 // Middleware
 app.use(cors({
-    origin: 'http://127.0.0.1:5500/index.html' // Allow requests from your frontend's origin
+    origin: 'https://imrservicos.netlify.app/' // Allow requests from your frontend's origin
 }));
 app.use(bodyParser.json());
 
