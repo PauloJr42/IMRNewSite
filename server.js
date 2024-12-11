@@ -17,10 +17,8 @@ const pool = new Pool({
 
 // Middleware
 app.use(cors({
-    origin: ['https://imrservicos.netlify.app', 'http://127.0.0.1:5500/index.html'], // Add other allowed origins if needed
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify allowed HTTP methods
-    allowedHeaders: ['Content-Type', 'Authorization'] // Specify allowed headers
-  }));
+    origin: 'http://127.0.0.1:5500' // Allow requests from your frontend's origin
+}));
 app.use(bodyParser.json());
 
 // Rota de captura de dados
