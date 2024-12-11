@@ -7,7 +7,7 @@ document.getElementById("capture-form").addEventListener("submit", async functio
     const phone = document.getElementById("phone").value;
 
     try {
-        const response = await fetch(".netlify/functions/server", {  // Altere o caminho para as funções serverless
+        const response = await fetch(".netlify/functions/server3", {  // Altere o caminho para as funções serverless
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
