@@ -3,6 +3,6 @@
   publish = "public"
 
 [[redirects]]
-  from = "/.netlify/functions/server/*"
-  to = "/.netlify/functions/server/server.mjs"
+  from = "https://imrservicos.netlify.app"
+  to = "https://imrservicos.netlify.app/.netlify/functions/server/server.mjs"
   status = 200
