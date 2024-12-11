@@ -1,6 +1,6 @@
 [build]
-  functions = "functions" # Diretório onde estão as funções serverless
-  publish = "public"      # Diretório onde estão os arquivos estáticos (frontend)
+  functions = "netlify/functions" # Diretório onde estão as funções serverless
+  publish = "IMRNEWSITE"      # Diretório onde estão os arquivos estáticos (frontend)
 
 [[redirects]]
   from = "/api/capture"
