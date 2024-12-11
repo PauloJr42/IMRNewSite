@@ -1,4 +1,4 @@
-import { stream } from "@netlify/functions";
+import { context } from "@netlify/functions";
 
 const express = require("express");
 const bodyParser = require("body-parser");
