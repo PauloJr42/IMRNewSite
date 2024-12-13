@@ -25,7 +25,7 @@ const pool = new Pool({
 // Rota de captura de dados
 router.post("/api/capture", async (req, res) => {
     const { email, phone } = req.body;
-
+    console.log("Received data:", req.body);
     if (!email || !phone) {
         return res.status(400).json({ error: "Dados incompletos." });
     }
