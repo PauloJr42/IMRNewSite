@@ -14,10 +14,10 @@ app.use(bodyParser.json());
 
 // Configuração do banco Nile usando variáveis de ambiente criadas no Netlify
 const pool = new Pool({
-    host: process.env.NILEDB_HOST,
-    user: process.env.NILEDB_USER,
-    password: process.env.NILEDB_PASSWORD,
-    database: process.env.NILEDB_NAME,
+    host: "us-west-2.db.thenile.dev",
+    user: "0193bd63-4ec9-7079-9890-a96c459daf53",
+    password: "eb803924-7c07-4e55-b13b-8e3d32ce5cbf",
+    database: "Leeds",
     port: 5432, // Confirme se o Nile usa essa porta padrão do PostgreSQL
     ssl: { rejectUnauthorized: false },
 });
