@@ -1,43 +1,46 @@
-// netlify/functions/capture.js
+const express = require("express");
+const serverless = require("serverless-http");
+const bodyParser = require("body-parser");
+const { Pool } = require("pg");
+const cors = require("cors");
 
-const { Pool } = require('pg');
+// Configurações do app Express
+const app = express();
+const router = express.Router();
 
-// Configuração da conexão com o banco PostgreSQL
+// Middleware
+app.use(cors());
+app.use(bodyParser.json());
+
+// Configuração do banco Nile usando variáveis de ambiente criadas no Netlify
 const pool = new Pool({
-    user: process.env.NILEDB_USER,
     host: process.env.NILEDB_HOST,
-    database: process.env.NILEDB_DATABASE,
+    user: process.env.NILEDB_USER,
     password: process.env.NILEDB_PASSWORD,
-    port: process.env.NILEDB_PORT,
+    database: process.env.NILEDB_NAME,
+    port: 5432, // Confirme se o Nile usa essa porta padrão do PostgreSQL
+    ssl: { rejectUnauthorized: false },
 });
-    console.log("server", NILEDB_USER, NILEDB_HOST, NILEDB_DATABASE, NILEDB_PASSWORD, NILEDB_PORT,);
-exports.handler = async (event, context) => {
-    const data = JSON.parse(event.body);
-    console.log("Received data:", data);
 
-    if (!data.email || !data.phone) {
-        return {
-            statusCode: 400,
-            body: JSON.stringify({ error: "Dados incompletos." }),
-        };
+// Rota de captura de dados
+router.post("/api/capture", async (req, res) => {
+    const { email, phone } = req.body;
+
+    if (!email || !phone) {
+        return res.status(400).json({ error: "Dados incompletos." });
     }
 
     try {
-        const result = await pool.query(
-            "INSERT INTO users (email, phone) VALUES ($1, $2)",
-            [email, phone]
-        );
-        console.log("Server", email, phone);
-        return {
-            statusCode: 200,
-            body: JSON.stringify({ message: "Dados salvos com sucesso!" }),
-        };
+        await pool.query("INSERT INTO users (email, phone) VALUES ($1, $2)", [email, phone]);
+        res.status(200).json({ message: "Dados salvos com sucesso!" });
     } catch (error) {
         console.error("Erro ao salvar dados:", error);
-        return {
-            statusCode: 500,
-            body: JSON.stringify({ error: "Erro no servidor." }),
-        };
-        
+        res.status(500).json({ error: "Erro no servidor ao gravar no banco de dados." });
     }
-};
+});
+
+// Integrando o router ao Express
+app.use("/", router);
+
+// Exportando a função serverless
+module.exports.handler = serverless(app);
