@@ -4,11 +4,11 @@ const { Pool } = require('pg');
 
 // Configuração da conexão com o banco PostgreSQL
 const pool = new Pool({
-    user: "postgres",
-    host: "localhost",
-    database: "postgres",
-    password: "12345678",
-    port: 5432,
+    user: process.env.NILEDB_USER,
+    host: process.env.NILEDB_HOST,
+    database: process.env.NILEDB_DATABASE,
+    password: process.env.NILEDB_PASSWORD,
+    port: process.env.NILEDB_PORT,
 });
 
 exports.handler = async (event, context) => {
