@@ -14,7 +14,7 @@ document.getElementById("capture-form").addEventListener("submit", async functio
             },
             body: JSON.stringify({ email, phone }),
         });
-
+            console.log(email,phone);
         if (response.ok) {
             alert("Dados enviados com sucesso!");
         } else {
