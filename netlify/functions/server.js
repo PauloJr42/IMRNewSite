@@ -12,9 +12,10 @@ const pool = new Pool({
 });
 
 exports.handler = async (event, context) => {
-    const { email, phone } = JSON.parse(event.body);
+    const data = JSON.parse(event.body);
+    console.log("Received data:", data);
 
-    if (!email || !phone) {
+    if (!data.email || !data.phone) {
         return {
             statusCode: 400,
             body: JSON.stringify({ error: "Dados incompletos." }),
