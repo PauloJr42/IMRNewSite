@@ -10,7 +10,7 @@ const pool = new Pool({
     password: process.env.NILEDB_PASSWORD,
     port: process.env.NILEDB_PORT,
 });
-
+    console.log(NILEDB_USER, NILEDB_HOST, NILEDB_DATABASE, NILEDB_PASSWORD, NILEDB_PORT,);
 exports.handler = async (event, context) => {
     const data = JSON.parse(event.body);
     console.log("Received data:", data);
