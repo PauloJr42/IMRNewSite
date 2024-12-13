@@ -1,5 +1,3 @@
-// app.js
-
 document.getElementById("capture-form").addEventListener("submit", async function (event) {
     event.preventDefault();
 
@@ -7,18 +5,20 @@ document.getElementById("capture-form").addEventListener("submit", async functio
     const phone = document.getElementById("phone").value;
 
     try {
-        const response = await fetch(".netlify/functions/server", {  // Altere o caminho para as funções serverless
+        const response = await fetch("/.netlify/functions/server/api/capture", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({ email, phone }),
         });
-            console.log(email,phone);
+
         if (response.ok) {
             alert("Dados enviados com sucesso!");
         } else {
-            alert("Erro ao enviar os dados.");
+            const errorData = await response.json();
+            console.error("Erro:", errorData);
+            alert(`Erro: ${errorData.error || "Falha no servidor."}`);
         }
     } catch (error) {
         console.error("Erro:", error);

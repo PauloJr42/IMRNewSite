@@ -31,7 +31,9 @@ router.post("/api/capture", async (req, res) => {
     }
 
     try {
-        await pool.query("INSERT INTO users (email, phone) VALUES ($1, $2)", [email, phone]);
+        console.log("Tentando conectar ao banco...");
+        const result = await pool.query("INSERT INTO users (email, phone) VALUES ($1, $2)", [email, phone]);
+        console.log("Dados salvos no banco:", result);
         res.status(200).json({ message: "Dados salvos com sucesso!" });
     } catch (error) {
         console.error("Erro ao salvar dados:", error);
