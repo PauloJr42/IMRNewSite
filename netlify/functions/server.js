@@ -27,7 +27,7 @@ exports.handler = async (event, context) => {
             "INSERT INTO users (email, phone) VALUES ($1, $2)",
             [email, phone]
         );
-
+        console.log("Server", email, phone);
         return {
             statusCode: 200,
             body: JSON.stringify({ message: "Dados salvos com sucesso!" }),
@@ -38,5 +38,6 @@ exports.handler = async (event, context) => {
             statusCode: 500,
             body: JSON.stringify({ error: "Erro no servidor." }),
         };
+        
     }
 };
