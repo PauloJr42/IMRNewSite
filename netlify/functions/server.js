@@ -21,9 +21,9 @@ const pool = new Pool({
     port: 5432, // Confirme se o Nile usa essa porta padrão do PostgreSQL
     ssl: { rejectUnauthorized: false },
 });
-
+    console.log(pool);
 // Rota de captura de dados
-router.post("/api/capture", async (req, res) => {
+app.post("/api/capture", async (req, res) => {
     const { email, phone } = req.body;
     console.log("Received data:", req.body);
     if (!email || !phone) {
@@ -43,6 +43,13 @@ router.post("/api/capture", async (req, res) => {
 
 // Integrando o router ao Express
 app.use("/", router);
+app.all('*', (req, res) => {
+    console.log(`Request received: ${req.method} ${req.url}`);
+    console.log('Headers:', req.headers);
+    console.log('Body:', req.body);
+    next();
+    res.status(404).json({ message: 'Rota não encontrada.' });
+});
 
 // Exportando a função serverless
 module.exports.handler = serverless(app);

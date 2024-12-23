@@ -1,3 +1,5 @@
+import { response } from "express";
+
 document.getElementById("capture-form").addEventListener("submit", async function (event) {
     event.preventDefault();
 
@@ -21,6 +23,7 @@ document.getElementById("capture-form").addEventListener("submit", async functio
             alert(`Erro: ${errorData.error || "Falha no servidor."}`);
         }
     } catch (error) {
+        console.log(response);
         console.error("Erro:", error);
         alert("Erro ao conectar ao servidor.");
     }
