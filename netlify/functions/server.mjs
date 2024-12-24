@@ -1,6 +1,7 @@
 import express from 'express';
 import { Pool } from 'pg';
 import dotenv from 'dotenv';
+import serverless from 'serverless-http'; // Adicionei o adaptador serverless-http
 
 // Carregar variáveis de ambiente do arquivo .env
 dotenv.config();
@@ -23,7 +24,7 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 
 // Rota POST para salvar os dados no banco de dados
-app.post('/netlify/functions/server.mjs', async (req, res) => {
+app.post('/api/server', async (req, res) => {
   const { email, phone } = req.body;
 
   // Verificar se os dados estão completos
@@ -52,11 +53,5 @@ app.post('/netlify/functions/server.mjs', async (req, res) => {
   }
 });
 
-// Iniciar o servidor na porta configurada
-app.listen(port, () => {
-  console.log(`Servidor rodando na porta ${port}`);
-});
-
-export const handler = async (event, context) => {
-  return await app(event, context);
-};
+// Configurar o adaptador serverless
+export const handler = serverless(app);
