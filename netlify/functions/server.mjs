@@ -8,10 +8,10 @@ dotenv.config();
 
 // Configuração do banco de dados PostgreSQL usando variáveis de ambiente
 const pool = new Pool({
-  host: process.env.PG_HOST || 'us-west-2.db.thenile.dev',
-  user: process.env.PG_USER || '0193bd63-4ec9-7079-9890-a96c459daf53',
-  password: process.env.PG_PASSWORD || 'eb803924-7c07-4e55-b13b-8e3d32ce5cbf',
-  database: process.env.PG_DATABASE || 'Leeds',
+  host: process.env.NILEDB_HOST,
+  user: process.env.NILEDB_USER,
+  password: process.env.NILEDB_PASSWORD,
+  database: process.env.NILEDB_NAME,
   port: process.env.PG_PORT || 5432,
   ssl: { rejectUnauthorized: false },
 });
