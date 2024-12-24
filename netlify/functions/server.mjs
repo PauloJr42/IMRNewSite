@@ -56,3 +56,7 @@ app.post('/netlify/functions/server.mjs', async (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor rodando na porta ${port}`);
 });
+
+export const handler = async (event, context) => {
+  return await app(event, context);
+};
