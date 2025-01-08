@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { supabase } from '../../lib/supabase';
 import { User } from 'lucide-react';
 
@@ -15,7 +15,7 @@ export function OnlineUsers() {
     const channel = supabase.channel('online-users')
       .on('presence', { event: 'sync' }, () => {
         const newState = channel.presenceState();
-        const users = Object.values(newState).flat() as OnlineUser[];
+        const users = Object.values(newState).flat() as unknown as OnlineUser[];
         setOnlineUsers(users);
       })
       .subscribe(async (status) => {
