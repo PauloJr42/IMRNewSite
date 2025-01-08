@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gradient-to-br from-blue-50 to-blue-100;
+  }
+  
+  input {
+    @apply px-3 py-2;
+  }
+}
+
+.btn-primary {
+  @apply w-full py-3 px-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-lg 
+    shadow-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-200 
+    focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+}
+
+.btn-whatsapp {
+  @apply w-full py-3 px-4 bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold rounded-lg 
+    shadow-lg hover:from-green-600 hover:to-green-700 transition-all duration-200 
+    focus:ring-2 focus:ring-green-500 focus:ring-offset-2;
+}
+
+.input-primary {
+  @apply w-full rounded-lg border-gray-200 bg-white/50 backdrop-blur-sm
+    focus:border-blue-500 focus:ring-blue-500 shadow-sm;
+}
