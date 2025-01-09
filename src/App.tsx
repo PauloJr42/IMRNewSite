@@ -45,7 +45,7 @@ function App() {
             </div>
             <div className="space-y-4">
               <a 
-                href="https://wa.me/5511973800502" 
+                href="https://wa.me/5585999878625" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="btn-whatsapp flex items-center justify-center"
