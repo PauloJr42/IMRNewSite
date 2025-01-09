@@ -56,7 +56,7 @@ function App() {
                 Falar com Atendente
               </a>
               <a 
-                href="https://docs.google.com/forms/d/e/1FAIpQLSdvvwlbHYxqZO9YW9p_wlh-rqXPz0q7uRYVF4UqvwHNyZPPrw/header"
+                href="https://docs.google.com/forms/d/e/1FAIpQLSewophx1u3gwCOc-0qP3HmdZnVICA1pt6QzXfWryWhm0SH7Rg/viewform?usp=header"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-primary flex items-center justify-center"
