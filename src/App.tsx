@@ -1,14 +1,16 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { LoginForm } from './components/auth/LoginForm';
 import { RegisterForm } from './components/auth/RegisterForm';
+import { BtuCalculator } from './components/BtuCalculator';
 import { useAuth } from './hooks/useAuth';
-import { LogOut, Building2, Wrench } from 'lucide-react';
+import { LogOut, Building2, Wrench, Calculator } from 'lucide-react';
 import { supabase } from './lib/supabase';
 
 function App() {
   const { user, loading } = useAuth();
   const [isLogin, setIsLogin] = useState(true);
+  const [showBtuCalculator, setShowBtuCalculator] = useState(false);
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
@@ -54,7 +56,7 @@ function App() {
                 Falar com Atendente
               </a>
               <a 
-                href="https://docs.google.com/forms/d/e/1FAIpQLSewophx1u3gwCOc-0qP3HmdZnVICA1pt6QzXfWryWhm0SH7Rg/viewform?usp=header"
+                href="https://docs.google.com/forms/d/e/1FAIpQLSdvvwlbHYxqZO9YW9p_wlh-rqXPz0q7uRYVF4UqvwHNyZPPrw/header"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-primary flex items-center justify-center"
@@ -62,7 +64,20 @@ function App() {
                 <Wrench className="h-5 w-5 mr-2" />
                 Solicitar Serviço
               </a>
+              <button
+                onClick={() => setShowBtuCalculator(true)}
+                className="btn-primary flex items-center justify-center"
+              >
+                <Calculator className="h-5 w-5 mr-2" />
+                Calculadora de BTUs
+              </button>
             </div>
+
+            {showBtuCalculator && (
+              <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4">
+                <BtuCalculator onClose={() => setShowBtuCalculator(false)} />
+              </div>
+            )}
           </div>
         ) : (
           <div className="bg-white/80 backdrop-blur-sm shadow-xl rounded-2xl p-8">
