@@ -21,7 +21,7 @@ export function LoginForm() {
 
       if (error) throw error;
       toast.success('Login realizado com sucesso!');
-      window.location.href = './dist/indeximr.html';
+      window.location.href = './indeximr.html';
     } catch (error) {
       toast.error(error instanceof Error ? error.message : 'Falha no login');
     } finally {
