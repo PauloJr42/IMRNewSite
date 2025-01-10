@@ -3,6 +3,6 @@
   
 
 [[redirects]]
-  from = "/*"
+  from = "/index.html"
   to = "/dist/index.html"
   status = 200
