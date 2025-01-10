@@ -1,10 +1,8 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
 
-   [build]
-   functions = "./netlify/functions"
-   
-     
-
-   [[redirects]]
-     from = "/api/*"
-     to = "/.netlify/functions/:splat" # This is often correct.  The most reliable way is to use the function's name in the file path.
-     status = 200
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
