@@ -31,17 +31,11 @@ export function BtuCalculator({ onClose }: BtuCalculatorProps) {
       const deltaX = e.clientX - dragStartRef.current.x;
       const deltaY = e.clientY - dragStartRef.current.y;
       
+      // Calcula a nova posição sem restrições
       const newX = dragStartRef.current.left + deltaX;
       const newY = dragStartRef.current.top + deltaY;
       
-      // Limites da tela
-      const maxX = window.innerWidth - (modalRef.current?.offsetWidth || 400);
-      const maxY = window.innerHeight - 100;
-      
-      setPosition({
-        x: Math.max(0, Math.min(newX, maxX)),
-        y: Math.max(0, Math.min(newY, maxY))
-      });
+      setPosition({ x: newX, y: newY });
     };
 
     const handleMouseUp = () => {
@@ -95,7 +89,7 @@ export function BtuCalculator({ onClose }: BtuCalculatorProps) {
   };
 
   return (
-    <div className="fixed inset-0 bg-black/20">
+    <div className="fixed inset-0">
       <div
         ref={modalRef}
         style={{
@@ -103,7 +97,8 @@ export function BtuCalculator({ onClose }: BtuCalculatorProps) {
           left: `${position.x}px`,
           top: `${position.y}px`,
           transform: 'translate(0, 0)',
-          willChange: 'transform'
+          willChange: 'transform',
+          zIndex: 50
         }}
         className="bg-white/90 backdrop-blur-sm shadow-xl rounded-2xl p-8 space-y-6 w-[400px]"
       >
