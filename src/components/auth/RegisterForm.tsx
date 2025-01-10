@@ -43,7 +43,7 @@ export function RegisterForm({ onSuccess }: { onSuccess: () => void }) {
 
       toast.success('Cadastro realizado com sucesso!');
       onSuccess();
-      window.location.href = './indeximr.html';
+      window.location.href = './dist/indeximr.html'; 
     } catch (error) {
       toast.error(error instanceof Error ? error.message : 'Falha no cadastro');
     } finally {
