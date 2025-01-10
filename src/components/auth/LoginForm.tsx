@@ -7,6 +7,7 @@ export function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [resetLoading, setResetLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,11 +21,32 @@ export function LoginForm() {
 
       if (error) throw error;
       toast.success('Login realizado com sucesso!');
-      window.location.href = './indeximr.html';
+      window.location.href = 'https://imrservicos.netlify.app';
     } catch (error) {
       toast.error(error instanceof Error ? error.message : 'Falha no login');
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleResetPassword = async () => {
+    if (!email) {
+      toast.error('Por favor, insira seu email primeiro');
+      return;
+    }
+
+    setResetLoading(true);
+    try {
+      const { error } = await supabase.auth.resetPasswordForEmail(email, {
+        redirectTo: `${window.location.origin}/reset-password`,
+      });
+
+      if (error) throw error;
+      toast.success('Email de recuperação enviado! Verifique sua caixa de entrada.');
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : 'Erro ao enviar email de recuperação');
+    } finally {
+      setResetLoading(false);
     }
   };
 
@@ -66,17 +88,32 @@ export function LoginForm() {
         </div>
       </div>
 
-      <button
-        type="submit"
-        disabled={loading}
-        className="btn-primary"
-      >
-        {loading ? (
-          <Loader2 className="h-5 w-5 animate-spin mx-auto" />
-        ) : (
-          'Entrar'
-        )}
-      </button>
+      <div className="flex flex-col space-y-4">
+        <button
+          type="submit"
+          disabled={loading}
+          className="btn-primary"
+        >
+          {loading ? (
+            <Loader2 className="h-5 w-5 animate-spin mx-auto" />
+          ) : (
+            'Entrar'
+          )}
+        </button>
+
+        <button
+          type="button"
+          onClick={handleResetPassword}
+          disabled={resetLoading}
+          className="text-sm text-blue-600 hover:text-blue-700 font-medium"
+        >
+          {resetLoading ? (
+            <Loader2 className="h-4 w-4 animate-spin mx-auto" />
+          ) : (
+            'Esqueceu sua senha?'
+          )}
+        </button>
+      </div>
     </form>
   );
 }
