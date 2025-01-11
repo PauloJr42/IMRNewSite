@@ -4,7 +4,7 @@ import { LoginForm } from './components/auth/LoginForm';
 import { RegisterForm } from './components/auth/RegisterForm';
 import { BtuCalculator } from './components/BtuCalculator';
 import { useAuth } from './hooks/useAuth';
-import { LogOut, Building2, Wrench, Calculator } from 'lucide-react';
+import { LogOut, Building2, Wrench, Calculator, Wrench as LogoIcon } from 'lucide-react';
 import { supabase } from './lib/supabase';
 
 function App() {
@@ -47,7 +47,7 @@ function App() {
             </div>
             <div className="space-y-4">
               <a 
-                href="https://wa.me/5585999878625" 
+                href="https://wa.me/5511973800502" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="btn-whatsapp flex items-center justify-center"
@@ -56,7 +56,7 @@ function App() {
                 Falar com Atendente
               </a>
               <a 
-                href="https://docs.google.com/forms/d/e/1FAIpQLSewophx1u3gwCOc-0qP3HmdZnVICA1pt6QzXfWryWhm0SH7Rg/viewform?usp=header"
+                href="https://docs.google.com/forms/d/e/1FAIpQLSdvvwlbHYxqZO9YW9p_wlh-rqXPz0q7uRYVF4UqvwHNyZPPrw/viewform"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-primary flex items-center justify-center"
@@ -82,8 +82,12 @@ function App() {
         ) : (
           <div className="bg-white/80 backdrop-blur-sm shadow-xl rounded-2xl p-8">
             <div className="text-center mb-8">
-              <h1 className="text-3xl font-bold text-gray-900 mb-2">IMR Serviços</h1>
-              <p className="text-gray-600">Soluções em Instalação, Manutenção e Reparo</p>
+              <div className="flex flex-col items-center justify-center mb-4">
+                {/* Fallback logo icon if image fails to load */}
+                <LogoIcon className="h-24 w-24 text-blue-600 mb-4" />
+                <h1 className="text-3xl font-bold text-gray-900 mb-2">IMR Serviços</h1>
+                <p className="text-gray-600">Soluções em Instalação, Manutenção e Reparo</p>
+              </div>
             </div>
             
             {isLogin ? (
