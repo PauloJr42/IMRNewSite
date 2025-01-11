@@ -4,7 +4,7 @@ import { LoginForm } from './components/auth/LoginForm';
 import { RegisterForm } from './components/auth/RegisterForm';
 import { BtuCalculator } from './components/BtuCalculator';
 import { useAuth } from './hooks/useAuth';
-import { LogOut, Building2, Wrench, Calculator, Wrench as LogoIcon } from 'lucide-react';
+import { LogOut, Building2, Wrench, Calculator, Wrench as LogoIcon, Globe } from 'lucide-react';
 import { supabase } from './lib/supabase';
 
 function App() {
@@ -33,7 +33,7 @@ function App() {
           <div className="bg-white/80 backdrop-blur-sm shadow-xl rounded-2xl p-8">
             <div className="flex justify-between items-center mb-8">
               <div>
-                <h2 className="text-2xl font-bold text-gray-900">Bem vindo ao IMR Serviços!</h2>
+                <h2 className="text-2xl font-bold text-gray-900">Bem vindo a IMR Serviços!</h2>
                 <p className="text-sm text-gray-600 mt-1">Logado como: {user.email}</p>
               </div>
               <button
@@ -46,8 +46,16 @@ function App() {
               </button>
             </div>
             <div className="space-y-4">
+            <a 
+               href="./indeximr.html" // Substitua pelo URL do seu site
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="btn-primary flex items-center justify-center">
+               <Globe className="h-5 w-5 mr-2" />
+                 Site
+              </a>
               <a 
-                href="https://wa.me/5511973800502" 
+                href="https://wa.me/5585999878625" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="btn-whatsapp flex items-center justify-center"
@@ -56,7 +64,7 @@ function App() {
                 Falar com Atendente
               </a>
               <a 
-                href="https://docs.google.com/forms/d/e/1FAIpQLSdvvwlbHYxqZO9YW9p_wlh-rqXPz0q7uRYVF4UqvwHNyZPPrw/viewform"
+                href="https://docs.google.com/forms/d/e/1FAIpQLSewophx1u3gwCOc-0qP3HmdZnVICA1pt6QzXfWryWhm0SH7Rg/viewform?usp=header"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-primary flex items-center justify-center"
@@ -84,7 +92,7 @@ function App() {
             <div className="text-center mb-8">
               <div className="flex flex-col items-center justify-center mb-4">
                 {/* Fallback logo icon if image fails to load */}
-                <LogoIcon className="h-24 w-24 text-blue-600 mb-4" />
+                <img src="https://d1di2lzuh97fh2.cloudfront.net/files/0y/0yb/0ybu3q.svg?ph=112b4d66c1&border=9f9f9f&outline=cccccc&color=dddddd" alt="IMR Serviços Logo" className="h-16 w-16 mb-4" />
                 <h1 className="text-3xl font-bold text-gray-900 mb-2">IMR Serviços</h1>
                 <p className="text-gray-600">Soluções em Instalação, Manutenção e Reparo</p>
               </div>

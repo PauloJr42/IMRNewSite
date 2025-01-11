@@ -3,6 +3,26 @@ import { Mail, Lock, User, Phone, Loader2 } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 import toast from 'react-hot-toast';
 
+const validatePassword = (password: string) => {
+  const minLength = password.length >= 8;
+  const hasUpperCase = /[A-Z]/.test(password);
+  const hasLowerCase = /[a-z]/.test(password);
+  const hasNumbers = /\d/.test(password);
+  const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+
+  const errors = [];
+  if (!minLength) errors.push('pelo menos 8 caracteres');
+  if (!hasUpperCase) errors.push('uma letra maiúscula');
+  if (!hasLowerCase) errors.push('uma letra minúscula');
+  if (!hasNumbers) errors.push('um número');
+  if (!hasSpecialChar) errors.push('um caractere especial');
+
+  return {
+    isValid: minLength && hasUpperCase && hasLowerCase && hasNumbers && hasSpecialChar,
+    errors
+  };
+};
+
 export function RegisterForm({ onSuccess }: { onSuccess: () => void }) {
   const [formData, setFormData] = useState({
     email: '',
@@ -12,9 +32,17 @@ export function RegisterForm({ onSuccess }: { onSuccess: () => void }) {
     phone: '',
   });
   const [loading, setLoading] = useState(false);
+  const [passwordTouched, setPasswordTouched] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    const { isValid, errors } = validatePassword(formData.password);
+    if (!isValid) {
+      toast.error(`Senha deve conter: ${errors.join(', ')}`);
+      return;
+    }
+
     setLoading(true);
 
     try {
@@ -43,7 +71,7 @@ export function RegisterForm({ onSuccess }: { onSuccess: () => void }) {
 
       toast.success('Cadastro realizado com sucesso!');
       onSuccess();
-      window.location.href = './indeximr.html'; 
+      window.location.href = 'https://imrservicos.netlify.app';
     } catch (error) {
       toast.error(error instanceof Error ? error.message : 'Falha no cadastro');
     } finally {
@@ -52,11 +80,19 @@ export function RegisterForm({ onSuccess }: { onSuccess: () => void }) {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value,
+      [name]: value,
     }));
+
+    if (name === 'password') {
+      setPasswordTouched(true);
+    }
   };
+
+  const { isValid, errors } = validatePassword(formData.password);
+  const showPasswordErrors = passwordTouched && !isValid;
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
@@ -151,10 +187,20 @@ export function RegisterForm({ onSuccess }: { onSuccess: () => void }) {
             required
             value={formData.password}
             onChange={handleChange}
-            className="input-primary pl-10"
+            className={`input-primary pl-10 ${showPasswordErrors ? 'border-red-500' : ''}`}
             placeholder="••••••••"
           />
         </div>
+        {showPasswordErrors && (
+          <div className="mt-2 text-sm text-red-600">
+            Senha deve conter:
+            <ul className="list-disc pl-5 mt-1">
+              {errors.map((error, index) => (
+                <li key={index}>{error}</li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
 
       <button
