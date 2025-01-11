@@ -4,7 +4,7 @@ import { LoginForm } from './components/auth/LoginForm';
 import { RegisterForm } from './components/auth/RegisterForm';
 import { BtuCalculator } from './components/BtuCalculator';
 import { useAuth } from './hooks/useAuth';
-import { LogOut, Building2, Wrench, Calculator, Wrench as LogoIcon, Globe } from 'lucide-react';
+import { LogOut, Building2, Wrench, Calculator, Globe } from 'lucide-react';
 import { supabase } from './lib/supabase';
 
 function App() {
