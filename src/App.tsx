@@ -41,8 +41,8 @@ function App() {
           <div className={`shadow-xl rounded-2xl p-8 ${darkMode ? 'bg-gray-800' : 'bg-white/80 backdrop-blur-sm'}`}>
             <div className="flex justify-between items-center mb-8">
               <div>
-                <h2 className="text-2xl font-bold text-gray-900">Bem vindo a IMR Serviços!</h2>
-                <p className="text-sm text-gray-600 mt-1">Logado como: {user.email}</p>
+              <h2 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>Bem vindo a IMR Serviços!</h2>
+              <p className={`text-sm mt-1 ${darkMode ? 'text-white' : 'text-gray-600'}`}>Logado como: {user.email}</p>
               </div>
               <button
                 onClick={handleLogout}
