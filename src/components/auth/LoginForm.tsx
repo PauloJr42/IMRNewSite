@@ -3,11 +3,18 @@ import { Mail, Lock, Loader2 } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 import toast from 'react-hot-toast';
 
-export function LoginForm() {
+interface LoginFormProps {
+  darkMode: boolean;
+}
+
+export function LoginForm({ darkMode }: LoginFormProps) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [resetLoading, setResetLoading] = useState(false);
+  
+  
+  
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -53,7 +60,7 @@ export function LoginForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div>
-        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+        <label htmlFor="email" className={`block text-sm font-medium ${darkMode ? 'text-white' : 'text-gray-700'}`}>
           Email
         </label>
         <div className="relative">
@@ -64,14 +71,15 @@ export function LoginForm() {
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="input-primary pl-10"
+            className={`input-primary pl-10 ${darkMode ? 'dark-mode' : ''}`}
             placeholder="Digite seu email"
+            style={{ color: darkMode ? 'white' : 'black' }}
           />
         </div>
       </div>
 
       <div>
-        <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+        <label htmlFor="password" className={`block text-sm font-medium ${darkMode ? 'text-white' : 'text-gray-700'}`}>
           Senha
         </label>
         <div className="relative">
@@ -82,8 +90,9 @@ export function LoginForm() {
             required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="input-primary pl-10"
+            className={`input-primary pl-10 ${darkMode ? 'dark-mode' : ''}`}
             placeholder="Digite sua senha"
+            style={{ color: darkMode ? 'white' : 'black' }}
           />
         </div>
       </div>

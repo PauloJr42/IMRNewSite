@@ -4,13 +4,16 @@ import { LoginForm } from './components/auth/LoginForm';
 import { RegisterForm } from './components/auth/RegisterForm';
 import { BtuCalculator } from './components/BtuCalculator';
 import { useAuth } from './hooks/useAuth';
-import { LogOut, Building2, Wrench, Calculator, Globe } from 'lucide-react';
+import { LogOut, Building2, Wrench, Calculator, Globe, Sun, Moon } from 'lucide-react';
 import { supabase } from './lib/supabase';
+
 
 function App() {
   const { user, loading } = useAuth();
   const [isLogin, setIsLogin] = useState(true);
   const [showBtuCalculator, setShowBtuCalculator] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
+ 
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
@@ -25,12 +28,17 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 py-16 px-4">
+    
+    <div className={`min-h-screen py-16 px-4 ${darkMode ? 'bg-gray-900 text-white' : 'bg-gradient-to-br from-blue-50 to-blue-100'}`}>
       <Toaster position="top-right" />
-      
+      <div className="flex justify-center mb-4">
+  <button onClick={() => setDarkMode(!darkMode)} className="p-2 rounded-full">
+    {darkMode ? <Sun className="h-6 w-6 text-yellow-500" /> : <Moon className="h-6 w-6 text-gray-800" />}
+  </button>
+</div>
       <div className="max-w-md mx-auto">
         {user ? (
-          <div className="bg-white/80 backdrop-blur-sm shadow-xl rounded-2xl p-8">
+          <div className={`shadow-xl rounded-2xl p-8 ${darkMode ? 'bg-gray-800' : 'bg-white/80 backdrop-blur-sm'}`}>
             <div className="flex justify-between items-center mb-8">
               <div>
                 <h2 className="text-2xl font-bold text-gray-900">Bem vindo a IMR Serviços!</h2>
@@ -88,20 +96,20 @@ function App() {
             )}
           </div>
         ) : (
-          <div className="bg-white/80 backdrop-blur-sm shadow-xl rounded-2xl p-8">
+          <div className={`shadow-xl rounded-2xl p-8 ${darkMode ? 'bg-gray-800' : 'bg-white/80 backdrop-blur-sm'}`}>
             <div className="text-center mb-8">
               <div className="flex flex-col items-center justify-center mb-4">
                 {/* Fallback logo icon if image fails to load */}
-                <img src="https://d1di2lzuh97fh2.cloudfront.net/files/0y/0yb/0ybu3q.svg?ph=112b4d66c1&border=9f9f9f&outline=cccccc&color=dddddd" alt="IMR Serviços Logo" className="h-16 w-16 mb-4" />
-                <h1 className="text-3xl font-bold text-gray-900 mb-2">IMR Serviços</h1>
-                <p className="text-gray-600">Soluções em Instalação, Manutenção e Reparo</p>
+                <img src={darkMode ? "/logo4.png" : "https://d1di2lzuh97fh2.cloudfront.net/files/0y/0yb/0ybu3q.svg?ph=112b4d66c1&border=9f9f9f&outline=cccccc&color=dddddd"} alt="IMR Serviços Logo" className="h-16 w-16 mb-4" />
+                <h1 className={`text-3xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>IMR Serviços</h1>
+                <p className={`text-gray-600 ${darkMode ? 'text-white' : 'text-gray-600'}`}>Soluções em Instalação, Manutenção e Reparo</p>
               </div>
             </div>
             
             {isLogin ? (
-              <LoginForm />
+              <LoginForm darkMode={darkMode} />
             ) : (
-              <RegisterForm onSuccess={() => setIsLogin(true)} />
+              <RegisterForm darkMode={darkMode} onSuccess={() => setIsLogin(true)} />
             )}
 
             <div className="mt-6 text-center">

@@ -23,7 +23,12 @@ const validatePassword = (password: string) => {
   };
 };
 
-export function RegisterForm({ onSuccess }: { onSuccess: () => void }) {
+interface RegisterFormProps {
+  onSuccess: () => void;
+  darkMode: boolean;
+}
+
+export function RegisterForm({ onSuccess, darkMode }: RegisterFormProps) {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -98,7 +103,7 @@ export function RegisterForm({ onSuccess }: { onSuccess: () => void }) {
     <form onSubmit={handleSubmit} className="space-y-4">
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="firstName" className={`block text-sm font-medium ${darkMode ? 'text-white' : 'text-gray-700'}`}>
             Primeiro Nome
           </label>
           <div className="relative">
@@ -110,14 +115,15 @@ export function RegisterForm({ onSuccess }: { onSuccess: () => void }) {
               required
               value={formData.firstName}
               onChange={handleChange}
-              className="input-primary pl-10"
+              className={`input-primary pl-10 ${darkMode ? 'dark-mode' : ''}`}
               placeholder="João"
+              style={{ color: darkMode ? 'white' : 'black' }}
             />
           </div>
         </div>
 
         <div>
-          <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="lastName" className={`block text-sm font-medium ${darkMode ? 'text-white' : 'text-gray-700'}`}>
             Sobrenome
           </label>
           <div className="relative">
@@ -129,15 +135,16 @@ export function RegisterForm({ onSuccess }: { onSuccess: () => void }) {
               required
               value={formData.lastName}
               onChange={handleChange}
-              className="input-primary pl-10"
+              className={`input-primary pl-10 ${darkMode ? 'dark-mode' : ''}`}
               placeholder="Silva"
+              style={{ color: darkMode ? 'white' : 'black' }}
             />
           </div>
         </div>
       </div>
 
       <div>
-        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+        <label htmlFor="email" className={`block text-sm font-medium ${darkMode ? 'text-white' : 'text-gray-700'}`}>
           Email
         </label>
         <div className="relative">
@@ -149,14 +156,15 @@ export function RegisterForm({ onSuccess }: { onSuccess: () => void }) {
             required
             value={formData.email}
             onChange={handleChange}
-            className="input-primary pl-10"
+            className={`input-primary pl-10 ${darkMode ? 'dark-mode' : ''}`}
             placeholder="joao@exemplo.com"
+            style={{ color: darkMode ? 'white' : 'black' }}
           />
         </div>
       </div>
 
       <div>
-        <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+        <label htmlFor="phone" className={`block text-sm font-medium ${darkMode ? 'text-white' : 'text-gray-700'}`}>
           Telefone
         </label>
         <div className="relative">
@@ -168,14 +176,15 @@ export function RegisterForm({ onSuccess }: { onSuccess: () => void }) {
             required
             value={formData.phone}
             onChange={handleChange}
-            className="input-primary pl-10"
+            className={`input-primary pl-10 ${darkMode ? 'dark-mode' : ''}`}
             placeholder="(85) 98765-4321"
+            style={{ color: darkMode ? 'white' : 'black' }}
           />
         </div>
       </div>
 
       <div>
-        <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+        <label htmlFor="password" className={`block text-sm font-medium ${darkMode ? 'text-white' : 'text-gray-700'}`}>
           Senha
         </label>
         <div className="relative">
@@ -187,8 +196,9 @@ export function RegisterForm({ onSuccess }: { onSuccess: () => void }) {
             required
             value={formData.password}
             onChange={handleChange}
-            className={`input-primary pl-10 ${showPasswordErrors ? 'border-red-500' : ''}`}
+            className={`input-primary pl-10 ${showPasswordErrors ? 'border-red-500' : ''} ${darkMode ? 'dark-mode' : ''}`}
             placeholder="••••••••"
+            style={{ color: darkMode ? 'white' : 'black' }}
           />
         </div>
         {showPasswordErrors && (

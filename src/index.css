@@ -28,3 +28,11 @@
   @apply w-full rounded-lg border-gray-200 bg-white/50 backdrop-blur-sm
     focus:border-blue-500 focus:ring-blue-500 shadow-sm;
 }
+
+.input-primary::placeholder {
+  color: gray;
+}
+
+.input-primary.dark-mode::placeholder {
+  color: white;
+}
