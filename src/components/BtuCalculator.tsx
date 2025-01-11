@@ -82,8 +82,8 @@ export function BtuCalculator({ onClose }: BtuCalculatorProps) {
         break;
     }
 
-    totalBTU += parseInt(people) * 400;
-    totalBTU += parseInt(heatSources) * 600;
+    totalBTU += parseInt(people) * 650;
+    totalBTU += parseInt(heatSources) * 650;
 
     setResult(Math.round(totalBTU));
   };
