@@ -41,8 +41,8 @@ function App() {
           <div className={`shadow-xl rounded-2xl p-8 ${darkMode ? 'bg-gray-800' : 'bg-white/80 backdrop-blur-sm'}`}>
             <div className="flex justify-between items-center mb-8">
               <div>
-              <h2 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>Bem vindo a IMR Serviços!</h2>
-              <p className={`text-sm mt-1 ${darkMode ? 'text-white' : 'text-gray-600'}`}>Logado como: {user.email}</p>
+                <h2 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>Bem vindo a IMR Serviços!</h2>
+<p className={`text-sm mt-1 ${darkMode ? 'text-white' : 'text-gray-600'}`}>Logado como: {user.email}</p>
               </div>
               <button
                 onClick={handleLogout}
@@ -100,11 +100,12 @@ function App() {
             <div className="text-center mb-8">
               <div className="flex flex-col items-center justify-center mb-4">
                 {/* Fallback logo icon if image fails to load */}
-                <img src={darkMode ? "/logo4.png" : "https://d1di2lzuh97fh2.cloudfront.net/files/0y/0yb/0ybu3q.svg?ph=112b4d66c1&border=9f9f9f&outline=cccccc&color=dddddd"} alt="IMR Serviços Logo" className="h-16 w-16 mb-4" />
+                <img src={darkMode ? "/logo6.png" : "https://d1di2lzuh97fh2.cloudfront.net/files/0y/0yb/0ybu3q.svg?ph=112b4d66c1&border=9f9f9f&outline=cccccc&color=dddddd"} alt="IMR Serviços Logo" className="h-16 w-16 mb-4" />
                 <h1 className={`text-3xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>IMR Serviços</h1>
                 <p className={`text-gray-600 ${darkMode ? 'text-white' : 'text-gray-600'}`}>Soluções em Instalação, Manutenção e Reparo</p>
               </div>
             </div>
+            
             
             {isLogin ? (
               <LoginForm darkMode={darkMode} />
