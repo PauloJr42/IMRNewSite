@@ -100,7 +100,7 @@ function App() {
             <div className="text-center mb-8">
               <div className="flex flex-col items-center justify-center mb-4">
                 {/* Fallback logo icon if image fails to load */}
-                <img src={darkMode ? "/logo6.png" : "https://d1di2lzuh97fh2.cloudfront.net/files/0y/0yb/0ybu3q.svg?ph=112b4d66c1&border=9f9f9f&outline=cccccc&color=dddddd"} alt="IMR Serviços Logo" className="h-16 w-16 mb-4" />
+                <img src={darkMode ? "/logo6.png" : "https://d1di2lzuh97fh2.cloudfront.net/files/0y/0yb/0ybu3q.svg?ph=112b4d66c1&border=9f9f9f&outline=cccccc&color=dddddd"} alt="IMR Serviços Logo" className="h-16 w-16 mb-4 rotate" />
                 <h1 className={`text-3xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>IMR Serviços</h1>
                 <p className={`text-gray-600 ${darkMode ? 'text-white' : 'text-gray-600'}`}>Soluções em Instalação, Manutenção e Reparo</p>
               </div>

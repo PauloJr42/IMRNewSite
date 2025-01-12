@@ -36,3 +36,20 @@
 .input-primary.dark-mode::placeholder {
   color: white;
 }
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.rotate {
+  animation: rotate 10s linear infinite; /* 5s para girar e 5s de pausa */
+  transform-origin: center;
+}
